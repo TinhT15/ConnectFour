@@ -36,7 +36,7 @@ public class ConnectFourObject
         int row = PlaceACoin(column, playerNumber);
        
         // Go down the Column
-        // check to see how many coins that matches playerNumber going Down the Row
+        // Check to see how many coins that matches playerNumber going down the Row
         if (row != rowSize - 1){   
             boolean keepCounting = true;
             int rowNumber = row + 1;
@@ -58,9 +58,63 @@ public class ConnectFourObject
                     keepCounting = false;
                 }
             }
-        }  
-
+        } 
         
+        // Reset count of coins for column
+        numberOfCoinsInARow = 1;
+
+        // Go across the Row from left to right
+        // Check to see how many coins that matches playerNumber going across the Row from left to right
+        if (column != columnSize - 1){  
+            
+            boolean keepCounting = true;
+            int columnNumber = column + 1;            
+
+            while (keepCounting) {  
+                if (myArray[row][columnNumber] == playerNumber)
+                {
+                    numberOfCoinsInARow++;
+                    if (columnNumber == columnSize - 1)
+                    {
+                        keepCounting = false;
+                    }  
+                    else
+                    {
+                        columnNumber++;
+                    }
+                }
+                else
+                {
+                    keepCounting = false;                    
+                }
+            }
+        } 
+        // Go across the Row from right to left
+        // Check to see how many coins that matches playerNumber going across the Row from right to left
+        if (column != 0){  
+            
+            boolean keepCounting = true;
+            int columnNumber = column - 1;            
+
+            while (keepCounting) {  
+                if (myArray[row][columnNumber] == playerNumber)
+                {
+                    numberOfCoinsInARow++;
+                    if (columnNumber == 0)
+                    {
+                        keepCounting = false;
+                    }  
+                    else
+                    {
+                        columnNumber--;
+                    }
+                }
+                else
+                {
+                    keepCounting = false;
+                }
+            }
+        } 
         if (numberOfCoinsInARow == 4){
             return true;
         }
@@ -79,7 +133,7 @@ public class ConnectFourObject
                     System.out.print("Y");
                 }
                 else if (myInt == 1){
-                    System.out.print("X");
+                    System.out.print("R");
                 }
                 else 
                 {
